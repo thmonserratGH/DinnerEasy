@@ -1,0 +1,77 @@
+ <style>
+    .cuadroIngresar {
+        margin: auto;
+        margin-top: 90px;
+        border: 2px solid rgb(184, 176, 176);
+        width: 50%;
+        height: 40%;
+        border-radius: 20px;
+        padding: 35px;
+        padding-bottom: 15px;
+    }
+
+    .ingresarTitulo {
+        text-align: center;
+    }
+
+    #botonIngresar {
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #mensajeError {
+        text-align: center;
+    }
+
+    .crearUsuario{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+ </style>
+
+ <div *ngIf="mensajeExito" class="alert alert-success text-center">
+  <p>{{ mensajeExito }}</p>
+</div>
+
+ <div class="cuadroIngresar" [appBorderError]="!!errorMensaje">
+    <h3 class="ingresarTitulo"><strong>Ingresar</strong></h3>
+    
+    <div class="formulario">
+        <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()"> 
+            <!-- conecta el formulario html con formularioLogin. ngSubmit llama a iniciarSesion() cuando se presione el boton -->
+        <div class="mb-3" >
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" [appBorderError]="!!errorMensaje"> 
+            <!-- se vincula el input del email con su campo definido en el formGroup -->
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" formControlName="contrasena" [appBorderError]="!!errorMensaje">
+            <!-- se vincula el input del password con su campo definido en el formGroup -->
+        </div>
+
+        
+        <div class="crearUsuario">
+            <h6>
+                <a style="text-decoration: none;" [routerLink]="['/crearUsuario']" routerLinkActive="active">
+                    ¿No tienes una cuenta? Crear usuario
+                </a>
+            </h6>
+        </div>
+
+        <div id="botonIngresar">
+            <button type="submit" class="btn btn-primary" [disabled]="formularioLogin.invalid">
+                Ingresar
+            </button>
+        </div>
+
+        <p id="mensajeError" *ngIf="errorMensaje" class="text-danger mt-2">{{ errorMensaje }}</p>
+        <!-- muestra el mensaje de error solo si errorMensaje tiene texto -->
+
+        </form>
+    </div>
+</div>

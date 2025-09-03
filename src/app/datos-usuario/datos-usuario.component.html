@@ -1,0 +1,39 @@
+<style>
+    .perfilUsuario {
+        max-width: 400px;
+        /* margin: auto; */
+        /* margin-top: 50px; */
+        padding: 20px;
+        /* /* border: 2px solid #ccc;
+        border-radius: 15px; 
+        background-color: #f9f9f9; */
+    }
+
+    h3 {
+    /* text-align: center; */
+    margin-bottom: 20px;
+    }
+
+    /* button {
+    display: block;
+    margin: auto;
+    } */
+
+</style>
+
+<div class="perfilUsuario" *ngIf="usuario">
+  <h3>Datos de Usuario</h3>
+  <p><strong>Nombre:</strong> {{ usuario.nombreCompleto }}</p>
+  <p><strong>Email:</strong> {{ usuario.email }}</p>
+  <p><strong>Tipo:</strong> {{ usuario.tipo }}</p>
+  <!-- <p><strong>Restaurante:</strong> {{ usuarioAdmin.restaurante }}</p>  
+  <p><strong>Dirección</strong> {{ usuarioAdmin.direccion }}</p> -->
+
+  <!-- <p><strong>Fecha de registro:</strong> {{ usuario.fechaRegistro | date: 'dd/MM/yyyy'}}</p> -->
+
+  <!-- <button class="btn btn-primary">Editar perfil</button> -->
+</div>
+
+<div *ngIf="!usuario">
+  <p>No se encontraron datos de usuario. Por favor, inicie sesión.</p>
+</div>

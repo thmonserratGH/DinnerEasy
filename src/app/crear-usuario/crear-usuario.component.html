@@ -1,0 +1,69 @@
+<style>
+
+    .cuadroCrearUsuario {
+        margin: auto;
+        margin-top: 90px;
+        border: 2px solid rgb(184, 176, 176);
+        width: 50%;
+        height: 40%;
+        border-radius: 20px;
+        padding: 35px;
+    }
+
+    .crearUsuarioTitulo {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    #mensajeError {
+        text-align: center;
+    }
+
+    #desplegable {
+        margin-top: 20px;
+        margin-bottom: 17px;
+        border: 1px solid black;
+    }
+
+</style>
+
+<div class="cuadroCrearUsuario">
+    <h3 class="crearUsuarioTitulo"><strong>Crear usuario</strong></h3>
+    
+    
+
+    <div class="formulario">
+
+        <form [formGroup]="formulario" (ngSubmit)="crearUsuario()"> <!-- form group vincula el fomulario de html con el definido en el archivo ts del componente. ngSubmit hace que la funcion indicada se ejecute al hacer click -->
+         <div class="mb-3">
+
+        <select id="desplegable" class="form-select" aria-label="Default select example" formControlName="tipo">
+            <option value="" disabled>Seleccione su tipo de usuario</option>
+            <option value="cliente">Usuario cliente</option>
+            <option value="admin">Administrador restaurante</option>
+        </select>
+
+            <label for="email" class="form-label"> Nombre completo </label>
+            <input type="" formControlName="nombre" class="form-control" id="email" aria-describedby="emailHelp"> <!-- formControlName vincula el input con el campo nombre completo del formGroup -->
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label"> Correo electrónico </label>
+            <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp"> <!-- formControlName vincula el input con el campo email del formGroup -->
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" formControlName="contrasena" class="form-control" id="contrasena" >
+        </div>
+
+        <p *ngIf="formulario.invalid" class="text-danger mt-2" id="mensajeError">
+            Por favor, completá todos los campos correctamente para poder crear el usuario.
+        </p>
+
+
+        <button type="submit" class="btn btn-primary" >Crear</button> <!-- si el formulario no pasa las validaciones el boton se desactiva con disabled -->
+        </form>
+    </div>
+</div>
+<!-- [disabled]="formulario.invalid" -->
